@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DrillsShop</string>
+    <string name="picture">picture</string>
+    <string-array name="seasons_entries">
+        <item>Winter</item>
+        <item>Spring</item>
+        <item>Summer</item>
+        <item>Autumn</item>
+    </string-array>
+    <string name="winter_january_title">January</string>
+    <string name="winter_february_title">February</string>
+    <string name="winter_december_title">December</string>
+
+    <string name="winter_january_info">January</string>
+    <string name="winter_february_info">February</string>
+    <string name="winter_december_info">December</string>
+</resources>

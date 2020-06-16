@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView_student_photo"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/femalestudent"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textView_student_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="2"
+        app:layout_constraintStart_toEndOf="@+id/imageView_student_photo"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="32sp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <TextView
+        android:id="@+id/textView_student_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView_student_photo"
+        app:layout_constraintTop_toBottomOf="@+id/textView_student_name" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

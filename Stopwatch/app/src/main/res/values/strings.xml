@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Stopwatch</string>
+    <string name="button_stop">Stop!</string>
+    <string name="button_remove_all">Delete!</string>
+    <string name="button_start">Start!</string>
+    <string name ="start_timer_numbers">00-00-00</string>
+</resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DBView">
+
+
+    <TextView
+        android:id="@+id/textId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32dp"/>
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textId"
+        android:textSize="32dp"/>
+
+    <TextView
+        android:id="@+id/textPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textName"
+        android:textSize="32dp"/>
+
+    <EditText
+        android:id="@+id/editId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@+id/textPhone"
+        android:inputType="textPersonName"
+        android:hint="ID" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@+id/editId"
+        android:inputType="textPersonName"
+        android:hint="Name" />
+
+    <EditText
+        android:id="@+id/editPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/editName"
+        android:hint="Phone" />
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editPhone"
+        android:text="Update" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editPhone"
+        android:layout_toRightOf="@+id/update"
+        android:text="Delete" />
+
+    <Button
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editPhone"
+        android:layout_toRightOf="@+id/delete"
+        android:text="Clear" />
+
+    <Button
+        android:id="@+id/read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editPhone"
+        android:layout_toRightOf="@+id/clear"
+        android:text="Read" />
+</RelativeLayout>

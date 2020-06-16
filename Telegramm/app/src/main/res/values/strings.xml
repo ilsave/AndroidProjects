@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Telegram</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings_default_username">Ilya Gushchin</string>
+    <string name="settings_default_status">Online</string>
+    <string name="settings_text_account">Account</string>
+    <string name="settings_default_number">+79221111</string>
+    <string name="settings_label_phone_number">Please Tab to change number</string>
+    <string name="settings_default_login">IlyaGushchin</string>
+    <string name="settings_label_login">Name</string>
+    <string name="settings_default_bio">About myself</string>
+    <string name="settings_label_bio">Text your bio</string>
+    <string name="settings_menu_change_name">Change name</string>
+    <string name="settings_menu_exit">Exit</string>
+</resources>

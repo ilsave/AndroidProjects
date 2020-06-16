@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Color Description</string>
+    <string name="button_find_description">Определить цвет!</string>
+
+    <string-array name="colors">
+        <item>Красный</item>
+        <item>Оранжевый</item>
+        <item>Желтый</item>
+        <item>Зеленый</item>
+        <item>Голубой</item>
+    </string-array>
+
+    <string-array name = "description_of_temp">
+        <item>КОММУНИЗМ!</item>
+        <item>КОММУННА!</item>
+        <item>Солнце!</item>
+        <item>Gross</item>
+        <item>Gay!</item>
+    </string-array>
+</resources>

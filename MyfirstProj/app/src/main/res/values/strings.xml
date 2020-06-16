@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">MyfirstProj</string>
+    <string name="title_activity_view_info">ViewInfo</string>
+    <string name="MyStaticString"> My string 123</string>
+    <string name="MyDynamicStatic"> %1$d </string>
+
+</resources>

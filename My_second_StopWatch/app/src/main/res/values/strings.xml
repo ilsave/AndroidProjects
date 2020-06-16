@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My_second_StopWatch</string>
+    <string name="button_Start">Start:)</string>
+    <string name="button_Stop">Stop:)</string>
+    <string name="button_Reset">Reset:)</string>
+    <string name="start_timer_values">00-00-00</string>
+</resources>

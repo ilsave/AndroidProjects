@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "852919930468",
+    "firebase_url": "https://myuni-31bbc.firebaseio.com",
+    "project_id": "myuni-31bbc",
+    "storage_bucket": "myuni-31bbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852919930468:android:a4092e206311ae5aedd971",
+        "android_client_info": {
+          "package_name": "com.example.myuni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852919930468-4j83h17vbao53mor5f4a9j1h4p9kghlp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHGN0oyyO9_wIoEDScMxvqADahdYsvCHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852919930468-4j83h17vbao53mor5f4a9j1h4p9kghlp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

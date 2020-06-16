@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BundesLiga</string>
+    <string name= "player_description">Определить игрока!</string>
+    <string name = "start_textView">Starting...</string>
+    <string-array name="player_name">
+        <item>Muller</item>
+        <item>LewaGOALski</item>
+        <item>Messi</item>
+        <item>Salah</item>
+    </string-array>
+    <string-array name="player_description">
+        <item>Muller- 1234567890</item>
+        <item>LewaGOALski- 1234567890</item>
+        <item>Messi- 1234567890</item>
+        <item>Salah- 1234567890</item>
+    </string-array>>
+</resources>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">LessonDesk</string>
+    <string name="logo_description">Логотип магазина инструментов</string>
+    <string name="logo">Логотип дня</string>
+    <string name="monday_picture">Monday picture</string>
+    <string name="first_week">Нечетная Неделя</string>
+    <string name="name_of_week">Четная Неделя</string>
+    <string name="picture_of_monday">picture of monday</string>
+    <string name="logo_tuesday">logo tuesday</string>
+    <string name="picture_of_firt_week_on_tuesday">picture of first week on tuesday</string>
+    <string name="description_wends">*Если у Вы ходите на секцию, в этом случае у Вас выходной</string>
+    <string name="rest_day">ВЫХОДНОЙ!</string>
+    <string-array name="days">
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресение</item>
+    </string-array>
+</resources>

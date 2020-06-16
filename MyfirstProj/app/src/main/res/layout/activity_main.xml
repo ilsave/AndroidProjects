@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REGISTRATION"
+        android:textColor="#72C71E1E"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Введите имя"
+        android:layout_marginTop="20sp"
+        android:textSize="36sp"
+        android:layout_below="@+id/textView"/>
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:hint="Имя"
+        android:layout_marginTop="20sp"
+        android:layout_below="@+id/textView3"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="введите номер телефона"
+        android:textSize="36sp"
+        android:layout_marginTop="20sp"
+        android:layout_below="@+id/editName"/>
+
+    <EditText
+        android:id="@+id/editPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="20sp"
+        android:inputType="textPersonName"
+        android:text=""
+        android:layout_below="@+id/textView4"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/MyColor"
+        android:text="регистрация" />
+
+    <Button
+        android:id="@+id/alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:text="Button" />
+
+</RelativeLayout>
