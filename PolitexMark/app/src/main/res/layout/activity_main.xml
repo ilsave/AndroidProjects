@@ -7,13 +7,23 @@
     tools:context=".MainActivity">
 
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <EditText
         android:id="@+id/editTextText_FirstStudentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Имя..."
+        android:text="Илья"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
@@ -25,7 +35,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Фамилия..."
+        android:text="Гущин"
         app:layout_constraintTop_toBottomOf="@id/editTextText_FirstStudentName"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
@@ -37,17 +48,49 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="214dp" />
+        android:hint="Очество..."
+        android:text="Вячеславович"
+        app:layout_constraintTop_toBottomOf="@id/editTextText_SecondStudentName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp" />
 
     <EditText
-        android:id="@+id/editTextText_StudentName"
+        android:id="@+id/editTextText_StudentId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="308dp" />
+        android:hint="Номер зачетки..."
+        android:text="182979"
+        app:layout_constraintTop_toBottomOf="@id/editTextText_ThirdStudentName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spinnerTypeEducation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/eduTypes"
+        app:layout_constraintTop_toBottomOf="@id/editTextText_StudentId"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        />
+
+    <Button
+        android:id="@+id/button_ready"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Готово"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerTypeEducation"
+        android:onClick="onButtonReadyClicked"
+        android:layout_marginTop="16dp"/>
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

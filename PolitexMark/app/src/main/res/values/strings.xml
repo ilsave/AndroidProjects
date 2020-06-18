@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PolitexMark</string>
+
+    <string-array name="eduTypes">
+        <item>Балакавриат</item>
+        <item>Магистратура</item>
+    </string-array>
 </resources>

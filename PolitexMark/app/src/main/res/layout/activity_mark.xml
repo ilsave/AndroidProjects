@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MarkActivity">
+
+
+    <TextView
+        android:id="@+id/textView_SayHello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Привет, если не ошибаюсь, то вот краткая информация о тебе:)" />
+
+    <TextView
+        android:id="@+id/textView_mark_facultet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textView_SayHello"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        android:text="Ваш факультет:" />
+
+    <TextView
+        android:id="@+id/textView_mark_facultetInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textView_mark_facultet"
+        app:layout_constraintTop_toBottomOf="@+id/textView_SayHello" />
+
+    <TextView
+        android:id="@+id/textView_mark_kyrs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Курс: "
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_mark_facultet" />
+
+    <TextView
+        android:id="@+id/textView_mark_kyrsInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textView_mark_kyrs"
+        app:layout_constraintTop_toBottomOf="@+id/textView_mark_facultetInfo" />
+
+    <TextView
+        android:id="@+id/textView_mark_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ваша группа: "
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_mark_kyrs"/>
+
+    <TextView
+        android:id="@+id/textView_mark_groupInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/textView_mark_group"
+        app:layout_constraintTop_toBottomOf="@id/textView_mark_kyrsInfo"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
