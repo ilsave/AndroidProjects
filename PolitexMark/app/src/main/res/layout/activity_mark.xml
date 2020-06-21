@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:layout_marginStart="16dp"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView_mark_facultet"
         app:layout_constraintTop_toBottomOf="@+id/textView_SayHello" />
 
@@ -40,11 +40,11 @@
         android:id="@+id/textView_mark_kyrs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Курс: "
         android:layout_marginStart="16dp"
+        android:text="Курс: "
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_mark_facultet" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_mark_facultetInfo" />
 
     <TextView
         android:id="@+id/textView_mark_kyrsInfo"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:layout_marginStart="16dp"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView_mark_kyrs"
         app:layout_constraintTop_toBottomOf="@+id/textView_mark_facultetInfo" />
 
@@ -60,11 +60,11 @@
         android:id="@+id/textView_mark_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ваша группа: "
         android:layout_marginStart="16dp"
+        android:text="Ваша группа: "
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_mark_kyrs"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView_mark_kyrsInfo" />
 
     <TextView
         android:id="@+id/textView_mark_groupInfo"
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:layout_marginStart="16dp"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/textView_mark_group"
         app:layout_constraintTop_toBottomOf="@id/textView_mark_kyrsInfo"/>
 

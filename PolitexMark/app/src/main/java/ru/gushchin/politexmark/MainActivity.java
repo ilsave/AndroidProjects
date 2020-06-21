@@ -53,20 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         new PolitechQueryTask().execute();
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                String line;
-//               line =  networkUtils.getWeb(editText_FirstStudentName.getText().toString(),
-//                         editText_SecondStudentName.getText().toString(),
-//                         editText_ThirdStudentName.getText().toString(),
-//                         spinner_TypeEducation.getSelectedItem().toString(),
-//                         editText_StudentId.getText().toString());
-//                Intent intent = new Intent(MainActivity.this, MarkActivity.class);
-//                intent.putExtra("line", line);
-//                startActivity(intent);
-//            }
-//        }).start();
     }
 
     class PolitechQueryTask extends AsyncTask<Void, Void, Elements>{

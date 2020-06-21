@@ -2,6 +2,7 @@ package ru.gushchin.politexmark;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -18,8 +19,14 @@ public class MarkActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mark);
 
         textViewFacultetTitle = findViewById(R.id.textView_mark_facultetInfo);
+        textViewFacultetTitle.setTextColor(Color.parseColor("#000000"));
+
         textViewKyrsTitle = findViewById(R.id.textView_mark_kyrsInfo);
+        textViewKyrsTitle.setTextColor(Color.parseColor("#000000"));
+
+
         textViewGroupTitle = findViewById(R.id.textView_mark_groupInfo);
+        textViewGroupTitle.setTextColor(Color.parseColor("#000000"));
 
         String info0 = getIntent().getStringExtra("line0");
         String info1 = getIntent().getStringExtra("line1");

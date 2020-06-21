@@ -70,7 +70,7 @@ class NetworkUtils {
             Element finalfuc = facultetchildern.get(0);
             info = tables.text();
             Log.d("Mymarklog", "hey there "+ info);
-            Log.d("Mymarklog", "hey not there " + facultet.child(1).child(1).text());
+            Log.d("mymarklog", "hey not there " + tables.get(3).child(2).child(6).ownText());
 
 //            new Handler(Looper.getMainLooper()).post(new Runnable() {
 //                @Override

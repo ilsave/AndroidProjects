@@ -17,10 +17,24 @@ public class ParseInfo {
         list.add(facultet.child(1).child(1).text());
         list.add(facultet.child(2).child(1).text());
         list.add(facultet.child(3).child(1).text());
+        //list.add(response.);
 
 //        Log.d("Mymarklog", "hey there "+ info);
 //        Log.d("Mymarklog", "hey not there " + facultet.child(1).child(1).text()); - shows irit
 //        Log.d("iwillfindu", "" + facultet.text());
      return list;
+    }
+
+    static String getAllMarks(Elements response){
+
+       StringBuilder answer = new StringBuilder();
+        Element table;
+        for (int i = 2; i < 5; i++){
+            table = response.get(i);
+          //  for (int j = 0; j < )
+        }
+
+
+       return answer.toString();
     }
 }
