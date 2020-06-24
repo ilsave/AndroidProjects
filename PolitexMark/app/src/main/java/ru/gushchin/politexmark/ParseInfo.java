@@ -1,7 +1,6 @@
 package ru.gushchin.politexmark;
 
-import android.util.Log;
-
+import org.jsoup.internal.StringUtil;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -26,15 +25,51 @@ public class ParseInfo {
     }
 
     static String getAllMarks(Elements response){
-
-       StringBuilder answer = new StringBuilder();
+        List<Integer> marks = new LinkedList<>();
+        StringBuilder answer = new StringBuilder();
         Element table;
-        for (int i = 2; i < 5; i++){
-            table = response.get(i);
-          //  for (int j = 0; j < )
+        answer.append(" семестр     " + "      Ваша оценка          " +  " 1 Кн " + " 2 Кн ");
+        for (int i = 2; i < response.size(); i++){
+            answer.append("\n" + (i-1) + " семестр" + "\n");
+            for (int j = 2; j < response.get(i).childrenSize(); j++){
+                answer.append("     "+response.get(i).child(j).child(0).ownText().substring(0,6) + ".     ");
+                answer.append(response.get(i).child(j).child(response.get(i).child(j).childrenSize()-2).ownText());
+                if (StringUtil.isNumeric(response.get(i).child(j).child(response.get(i).child(j).childrenSize()-2).ownText())){
+                    marks.add(Integer.parseInt(response.get(i).child(j).child(response.get(i).child(j).childrenSize()-2).ownText()));
+                }
+                if (response.get(i).child(j).child(response.get(i).child(j).childrenSize()-2).ownText().equals("")){
+                    answer.append("Н/И");
+                }
+                answer.append("\n");
+            }
         }
-
-
+        answer.append("Мы тут подсчитали вашу среднюю оценку : " + calculateAverage(marks) + "\n");
        return answer.toString();
+    }
+
+    static String getAverageMark(Elements response){
+
+        List<Integer> marks = new LinkedList<>();
+
+        for (int i = 2; i < response.size(); i++){
+            for (int j = 2; j < response.get(i).childrenSize(); j++){
+                if (StringUtil.isNumeric(response.get(i).child(j).child(response.get(i).child(j).childrenSize()-2).ownText())){
+                    marks.add(Integer.parseInt(response.get(i).child(j).child(response.get(i).child(j).childrenSize()-2).ownText()));
+                }
+            }
+        }
+          double mark =  calculateAverage(marks);
+        return  String.valueOf(mark);
+    }
+
+     static double calculateAverage(List<Integer> marks) {
+        Integer sum = 0;
+        if(!marks.isEmpty()) {
+            for (Integer mark : marks) {
+                sum += mark;
+            }
+            return sum.doubleValue() / marks.size();
+        }
+        return sum;
     }
 }

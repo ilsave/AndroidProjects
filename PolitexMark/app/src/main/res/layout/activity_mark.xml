@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/coloкBackground"
+    android:orientation="vertical"
     tools:context=".MarkActivity">
 
 
@@ -11,27 +13,30 @@
         android:id="@+id/textView_SayHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Привет, если не ошибаюсь, то вот краткая информация о тебе:)"
+        android:textColor="@color/coloкWhite"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Привет, если не ошибаюсь, то вот краткая информация о тебе:)" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_mark_facultet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textView_SayHello"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
+        android:text="Ваш факультет:"
+        android:textColor="@color/coloкWhite"
         android:textSize="16sp"
-        android:text="Ваш факультет:" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_SayHello" />
 
     <TextView
         android:id="@+id/textView_mark_facultetInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:layout_marginStart="16dp"
+        android:text="TextView"
+        android:textColor="@color/coloкWhite"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView_mark_facultet"
         app:layout_constraintTop_toBottomOf="@+id/textView_SayHello" />
@@ -42,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Курс: "
+        android:textColor="@color/coloкWhite"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_mark_facultetInfo" />
@@ -50,8 +56,9 @@
         android:id="@+id/textView_mark_kyrsInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:layout_marginStart="16dp"
+        android:text="TextView"
+        android:textColor="@color/coloкWhite"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView_mark_kyrs"
         app:layout_constraintTop_toBottomOf="@+id/textView_mark_facultetInfo" />
@@ -62,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Ваша группа: "
+        android:textColor="@color/coloкWhite"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_mark_kyrsInfo" />
@@ -70,11 +78,67 @@
         android:id="@+id/textView_mark_groupInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:layout_marginStart="16dp"
+        android:text="TextView"
+        android:textColor="@color/coloкWhite"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/textView_mark_group"
-        app:layout_constraintTop_toBottomOf="@id/textView_mark_kyrsInfo"/>
+        app:layout_constraintTop_toBottomOf="@id/textView_mark_kyrsInfo" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="398dp"
+        android:layout_height="522dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_mark_group">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_mark_Info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/coloкWhite"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_mark_group" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView_mark_averageMarkTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ваша средняя оценка: "
+        android:textColor="@color/coloкWhite"
+        android:textSize="16sp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/textView_mark_facultetInfo"
+        app:layout_constraintTop_toTopOf="@+id/textView_mark_facultetInfo" />
+
+    <TextView
+        android:id="@+id/textView_mark_averMark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:text="TextView"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_mark_groupInfo"
+        app:layout_constraintTop_toBottomOf="@+id/textView_mark_averageMarkTitle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
