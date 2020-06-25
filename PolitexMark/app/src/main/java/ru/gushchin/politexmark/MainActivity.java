@@ -109,16 +109,21 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Elements response) {
             super.onPostExecute(response);
-            List<String> list = ParseInfo.getBaseInfo(response);
-            String markline = ParseInfo.getAllMarks(response);
-            progressBar.setVisibility(View.INVISIBLE);
-            Intent intent = new Intent(MainActivity.this, MarkActivity.class);
-            intent.putExtra("line0", list.get(0));
-            intent.putExtra("line1", list.get(1));
-            intent.putExtra("line2", list.get(2));
-            intent.putExtra("line3", markline);
-            intent.putExtra("line4", ParseInfo.getAverageMark(response));
-            startActivity(intent);
+            if (response!=null) {
+                List<String> list = ParseInfo.getBaseInfo(response);
+                String markline = ParseInfo.getAllMarks(response);
+                progressBar.setVisibility(View.INVISIBLE);
+                Intent intent = new Intent(MainActivity.this, MarkActivity.class);
+                intent.putExtra("line0", list.get(0));
+                intent.putExtra("line1", list.get(1));
+                intent.putExtra("line2", list.get(2));
+                intent.putExtra("line3", markline);
+                intent.putExtra("line4", ParseInfo.getAverageMark(response));
+                startActivity(intent);
+            } else {
+                Toast.makeText(context, "Данные введены неверно", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
+            }
         }
     }
 

@@ -29,7 +29,7 @@ public class ParseInfo {
         StringBuilder answer = new StringBuilder();
         Element table;
         answer.append(" семестр     " + "      Ваша оценка          " +  " 1 Кн " + " 2 Кн ");
-        for (int i = 2; i < response.size(); i++){
+        for (int i = 2; i < response.size()-4; i++){
             answer.append("\n" + (i-1) + " семестр" + "\n");
             for (int j = 2; j < response.get(i).childrenSize(); j++){
                 answer.append("     "+response.get(i).child(j).child(0).ownText().substring(0,6) + ".     ");
@@ -40,10 +40,21 @@ public class ParseInfo {
                 if (response.get(i).child(j).child(response.get(i).child(j).childrenSize()-2).ownText().equals("")){
                     answer.append("Н/И");
                 }
+                if (response.get(i).child(j).child(1).ownText().equals("")) {
+                    answer.append("               n/i");
+                }else {
+                    answer.append("               ").append(response.get(i).child(j).child(1).ownText());
+                }
+                if (response.get(i).child(j).child(3).ownText().equals("")) {
+                    answer.append("               n/i");
+                }else {
+                    answer.append("               ").append(response.get(i).child(j).child(3).ownText());
+                }
+
                 answer.append("\n");
             }
         }
-        answer.append("Мы тут подсчитали вашу среднюю оценку : " + calculateAverage(marks) + "\n");
+        answer.append("Мы тут подсчитали вашу среднюю оценку : ").append(calculateAverage(marks)).append("\n");
        return answer.toString();
     }
 

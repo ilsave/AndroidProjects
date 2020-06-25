@@ -64,13 +64,18 @@ class NetworkUtils {
         Document doc;
         try {
             doc = Jsoup.connect(url.toString()).get();
+            Log.d("lets see the doc ", doc.getElementsByTag("body").text()+ "");
+            if (!doc.getElementsByTag("body").text().equals("Студент не найден.")) {
                 tables = doc.getElementsByTag("tbody");
                 final Element facultet = tables.get(0);
                 Elements facultetchildern = facultet.children();
                 Element finalfuc = facultetchildern.get(0);
                 info = tables.text();
                 Log.d("Mymarklog", "hey there " + info);
-                Log.d("mymarklog", "hey not there " + tables.get(3).child(2).child(6).ownText());
+                Log.d("mymarklog", "hey not there " + tables.get(3).child(2).child(1).ownText());
+            }else{
+                tables = null;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
