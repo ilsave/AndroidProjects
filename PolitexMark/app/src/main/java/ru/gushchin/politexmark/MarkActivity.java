@@ -32,13 +32,13 @@ public class MarkActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_mark);
         textViewAverMark = findViewById(R.id.textView_mark_averMark);
         textViewAverMark.setTextColor(Color.parseColor("#000000"));
 
 
         textViewInfoMark = findViewById(R.id.textView_mark_Info);
-        textViewInfoMark.setTextColor(Color.parseColor("#000000"));
 
         textViewFacultetTitle = findViewById(R.id.textView_mark_facultetInfo);
         textViewFacultetTitle.setTextColor(Color.parseColor("#000000"));
@@ -71,7 +71,7 @@ public class MarkActivity extends AppCompatActivity {
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                         .setAutoCancel(false)
-                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                        .setSmallIcon(R.drawable.ic_menu_favorites)
                         .setWhen(System.currentTimeMillis())
                         .setContentIntent(pendingIntent)
                         .setContentTitle("Update, your average mark is  ")
