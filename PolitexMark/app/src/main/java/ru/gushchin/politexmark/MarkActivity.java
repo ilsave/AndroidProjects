@@ -1,7 +1,10 @@
 package ru.gushchin.politexmark;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -12,18 +15,52 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.jsoup.select.Elements;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import maes.tech.intentanim.CustomIntent;
 
 public class MarkActivity extends AppCompatActivity {
+
+    public void setList(List<Subject> list) {
+        this.listfromtask = list;
+    }
+
+    private List<Subject> listfromtask;
+     List<Subject> list;
+    SubjectAdapter subjectAdapter;
+    private RecyclerView recyclerView;
+    String info0;
+    String info1;
+    String info2;
+    String info3;
+    String info4;
+    String info5;
+    String info6;
+    String info7;
+    String info8;
 
     private TextView textViewFacultetTitle;
     private TextView textViewKyrsTitle;
     private TextView textViewGroupTitle;
     private TextView textViewInfoMark;
     private TextView textViewAverMark;
+    private ProgressBar progressBar;
 
     private NotificationManager notificationManager;
     private static final int NOTIFY_ID = 1;
@@ -32,13 +69,13 @@ public class MarkActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_mark);
+
+        progressBar = findViewById(R.id.progressBar);
+
         textViewAverMark = findViewById(R.id.textView_mark_averMark);
         textViewAverMark.setTextColor(Color.parseColor("#000000"));
 
-
-        textViewInfoMark = findViewById(R.id.textView_mark_Info);
 
         textViewFacultetTitle = findViewById(R.id.textView_mark_facultetInfo);
         textViewFacultetTitle.setTextColor(Color.parseColor("#000000"));
@@ -50,18 +87,26 @@ public class MarkActivity extends AppCompatActivity {
         textViewGroupTitle = findViewById(R.id.textView_mark_groupInfo);
         textViewGroupTitle.setTextColor(Color.parseColor("#000000"));
 
-        String info0 = getIntent().getStringExtra("line0");
-        String info1 = getIntent().getStringExtra("line1");
-        String info2 = getIntent().getStringExtra("line2");
-        String info3 = getIntent().getStringExtra("line3");
-        String info4 = getIntent().getStringExtra("line4");
 
-        Log.d("MysecondLog",info0);
-        textViewFacultetTitle.setText(info0);
-        textViewKyrsTitle.setText(info1);
-        textViewGroupTitle.setText(info2);
-        textViewInfoMark.setText(info3);
-        textViewAverMark.setText(info4.substring(0,4));
+        info0 = getIntent().getStringExtra("firstName");
+        info1 = getIntent().getStringExtra("secondName");
+        info2 = getIntent().getStringExtra("fatherName");
+        info3 = getIntent().getStringExtra("eduType");
+        info4 = getIntent().getStringExtra("studentNumber");
+
+        info5 = getIntent().getStringExtra("facultetName");
+        info6 = getIntent().getStringExtra("kyrsNumber");
+        info7 = getIntent().getStringExtra("group");
+        info8 = getIntent().getStringExtra("averMark");
+
+        textViewFacultetTitle.setText(info5);
+        textViewKyrsTitle.setText(info6);
+        textViewGroupTitle.setText(info7);
+        textViewAverMark.setText(info8);
+
+
+
+
 
         notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -79,32 +124,97 @@ public class MarkActivity extends AppCompatActivity {
                         .setContentText(info4);
         createChannelIfNeeded(notificationManager);
         notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
+        new PolitechQueryTask(this).execute();
 
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-//        notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-//
-//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        NotificationCompat.Builder notificationBuilder =
-//                new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-//                        .setAutoCancel(false)
-//                        .setSmallIcon(R.drawable.ic_launcher_foreground)
-//                        .setWhen(System.currentTimeMillis())
-//                        .setContentIntent(pendingIntent)
-//                        .setContentTitle("Загрузка прошла удачно!")
-//                        .setContentText("Вы ввели правильные данные");
-//        createChannelIfNeeded(notificationManager);
-//        notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
-    }
     public static void  createChannelIfNeeded(NotificationManager manager){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_DEFAULT);
             manager.createNotificationChannel(notificationChannel);
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_info,menu);
+
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_1:
+                Toast.makeText(this, "item_1", Toast.LENGTH_SHORT).show();
+                new PolitechQueryTask(this).execute();
+                return true;
+            case R.id.item_2:
+                Toast.makeText(this, "item_2", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MarkActivity.this, InfoActivity.class);
+                startActivity(intent);
+                CustomIntent.customType(this, "left-to-right");
+                return true;
+            case R.id.item_3:
+                Toast.makeText(this, "item_3", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(MarkActivity.this, InfoSubjectActivity.class);
+                startActivity(intent2);
+                CustomIntent.customType(this, "left-to-right");
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(this, "right-to-left");
+    }
+
+    class PolitechQueryTask extends AsyncTask<Void, Void, Elements> {
+
+        Context context;
+
+        public PolitechQueryTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected Elements doInBackground(Void... params) {
+            Elements response;
+            response =  NetworkUtils.getWeb(info0,
+                    info1,
+                    info2,
+                    info3,
+                    info4);
+            return response;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(Elements response) {
+            super.onPostExecute(response);
+            if (response!=null) {
+                List<Subject> subjectList = ParseInfo.getSubjectList(response,info6,context);
+                subjectAdapter = new SubjectAdapter(subjectList);
+                recyclerView = findViewById(R.id.recyclerView);
+                recyclerView.setAdapter(subjectAdapter);
+                LinearLayoutManager mlinearLayoutManager = new LinearLayoutManager(context);
+                recyclerView.setLayoutManager(mlinearLayoutManager);
+                subjectAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.INVISIBLE);
+            } else {
+                Toast.makeText(context, "Данные введены неверно", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
 }

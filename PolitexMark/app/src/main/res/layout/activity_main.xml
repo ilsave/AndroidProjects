@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/coloкBackground"
+    android:background="@color/colorPrimaryDark"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -26,7 +26,6 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Имя..."
-        android:text="Илья"
         android:textColor="@color/coloкWhite"
 
         app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +40,6 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Фамилия..."
-        android:text="Гущин"
         android:textColor="@color/coloкWhite"
         app:layout_constraintTop_toBottomOf="@id/editTextText_FirstStudentName"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +53,6 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Очество..."
-        android:text="Вячеславович"
         android:textColor="@color/coloкWhite"
         app:layout_constraintTop_toBottomOf="@id/editTextText_SecondStudentName"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +66,6 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Номер зачетки..."
-        android:text="182979"
         android:textColor="@color/coloкWhite"
         app:layout_constraintTop_toBottomOf="@id/editTextText_ThirdStudentName"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +88,7 @@
         android:id="@+id/button_ready"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/coloкBackground"
+        android:background="@color/colorPrimaryDark"
         android:text="Готово"
         android:textColor="@color/coloкWhite"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,6 +105,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,5 +5,9 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="coloкBackground">#63B9FE</color>
     <color name="coloкWhite">#FFFFFF</color>
+    <color name="colorBlack">#4A4A4A</color>
+    <color name="colorPrimaryBlack">#000000</color>
+
+
 
 </resources>

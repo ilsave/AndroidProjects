@@ -4,20 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/coloкBackground"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     tools:context=".MarkActivity">
 
-
-    <TextView
-        android:id="@+id/textView_SayHello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Привет, если не ошибаюсь, то вот краткая информация о тебе:)"
-        android:textColor="@color/coloкWhite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_mark_facultet"
@@ -28,7 +18,7 @@
         android:textColor="@color/coloкWhite"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_SayHello" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_mark_facultetInfo"
@@ -39,7 +29,7 @@
         android:textColor="@color/coloкWhite"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView_mark_facultet"
-        app:layout_constraintTop_toBottomOf="@+id/textView_SayHello" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_mark_kyrs"
@@ -86,35 +76,38 @@
         app:layout_constraintTop_toBottomOf="@id/textView_mark_kyrsInfo" />
 
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="398dp"
-        android:layout_height="522dp"
+<!--    <ScrollView-->
+<!--        android:id="@+id/scrollView"-->
+<!--        android:layout_width="398dp"-->
+<!--        android:layout_height="522dp"-->
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_mark_group">
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView_mark_group">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
 
-            <TextView
-                android:id="@+id/textView_mark_Info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@color/coloкWhite"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_mark_group" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView_mark_Info"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="TextView"-->
+<!--                android:textColor="@color/coloкWhite"-->
+<!--                android:textSize="16sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView_mark_group" />-->
 
-        </LinearLayout>
-    </ScrollView>
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
+
+
+
 
     <TextView
         android:id="@+id/textView_mark_averageMarkTitle"
@@ -131,14 +124,134 @@
         android:id="@+id/textView_mark_averMark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="6dp"
         android:text="TextView"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView_mark_groupInfo"
         app:layout_constraintTop_toBottomOf="@+id/textView_mark_averageMarkTitle" />
+
+
+
+    <TextView
+        android:id="@+id/textView_LineName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Предмет"
+        android:gravity="center"
+        android:background="@drawable/view_border"
+        android:textColor="@color/colorPrimaryBlack"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@id/textView_LineFirstKnMark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_mark_averMark" />
+
+    <TextView
+        android:id="@+id/textView_LineFirstKnMark"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/view_border"
+        android:gravity="center"
+        android:text="1Кн Оценка"
+        android:textColor="@color/colorPrimaryBlack"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@id/textView_LineFirstKnPass"
+        app:layout_constraintStart_toEndOf="@id/textView_LineName"
+        app:layout_constraintTop_toBottomOf="@id/textView_mark_averMark" />
+
+    <TextView
+        android:id="@+id/textView_LineFirstKnPass"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="Пропуски"
+        android:background="@drawable/view_border"
+        android:textColor="@color/colorPrimaryBlack"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@id/textView_LineSecondKnMark"
+        app:layout_constraintStart_toEndOf="@id/textView_LineFirstKnMark"
+        app:layout_constraintTop_toBottomOf="@id/textView_mark_averMark" />
+
+    <TextView
+        android:id="@+id/textView_LineSecondKnMark"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/view_border"
+        android:gravity="center"
+        android:text="2Кн Оценка"
+        android:textColor="@color/colorPrimaryBlack"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@id/textView_LineSecondKnPass"
+        app:layout_constraintStart_toEndOf="@id/textView_LineFirstKnPass"
+        app:layout_constraintTop_toBottomOf="@id/textView_mark_averMark" />
+
+    <TextView
+        android:id="@+id/textView_LineSecondKnPass"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="Пропуски"
+        android:background="@drawable/view_border"
+        android:textColor="@color/colorPrimaryBlack"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@id/textView_LineMark"
+        app:layout_constraintStart_toEndOf="@id/textView_LineSecondKnMark"
+        app:layout_constraintTop_toBottomOf="@id/textView_mark_averMark" />
+
+    <TextView
+        android:id="@+id/textView_LineMark"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="Оценка"
+        android:background="@drawable/view_border"
+        android:textColor="@color/colorPrimaryBlack"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/textView_LineSecondKnPass"
+        app:layout_constraintTop_toBottomOf="@id/textView_mark_averMark" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_LineFirstKnMark"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="117dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintBottom_toTopOf="@+id/textView_LineFirstKnMark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_mark_groupInfo"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

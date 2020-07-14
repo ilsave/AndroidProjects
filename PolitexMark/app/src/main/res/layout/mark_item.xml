@@ -4,56 +4,68 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewAdapterNameSubject"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        style="@style/MyText"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintEnd_toStartOf="@+id/textViewAdapterFirstKnMark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewAdapterFirstKnMark"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:gravity="center"
-        app:layout_constraintStart_toEndOf="@id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        style="@style/MyText"
+        app:layout_constraintStart_toEndOf="@id/textViewAdapterNameSubject"
+        app:layout_constraintEnd_toStartOf="@+id/textViewAdapterFirstKnPass"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewAdapterFirstKnPass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:gravity="center"
-        app:layout_constraintStart_toEndOf="@id/textView3"
-        app:layout_constraintEnd_toStartOf="@+id/textView5"
+        style="@style/MyText"
+        app:layout_constraintStart_toEndOf="@id/textViewAdapterFirstKnMark"
+        app:layout_constraintEnd_toStartOf="@+id/textViewAdapterSecondKnMark"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewAdapterSecondKnMark"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:gravity="center"
-        app:layout_constraintStart_toEndOf="@id/textView4"
-        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        style="@style/MyText"
+        app:layout_constraintStart_toEndOf="@id/textViewAdapterFirstKnPass"
+        app:layout_constraintEnd_toStartOf="@+id/textViewAdapterSecondKnPass"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textViewAdapterSecondKnPass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:gravity="center"
-        app:layout_constraintStart_toEndOf="@id/textView5"
+        style="@style/MyText"
+        app:layout_constraintStart_toEndOf="@id/textViewAdapterSecondKnMark"
+        app:layout_constraintEnd_toStartOf="@id/textViewAdapterFinalMark"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <TextView
+        android:id="@+id/textViewAdapterFinalMark"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        style="@style/MyText"
+        app:layout_constraintStart_toEndOf="@id/textViewAdapterSecondKnPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
