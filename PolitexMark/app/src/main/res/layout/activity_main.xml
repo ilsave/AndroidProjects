@@ -23,90 +23,130 @@
         android:id="@+id/editTextText_FirstStudentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/input_field"
+        android:ems="15"
         android:hint="Имя..."
-        android:textColor="@color/coloкWhite"
-
-        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@id/editTextText_SecondStudentName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextText_SecondStudentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/input_field"
+        android:ems="15"
         android:hint="Фамилия..."
-        android:textColor="@color/coloкWhite"
-        app:layout_constraintTop_toBottomOf="@id/editTextText_FirstStudentName"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@id/editTextText_ThirdStudentName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/editTextText_FirstStudentName" />
 
     <EditText
         android:id="@+id/editTextText_ThirdStudentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/input_field"
+        android:ems="15"
         android:hint="Очество..."
-        android:textColor="@color/coloкWhite"
-        app:layout_constraintTop_toBottomOf="@id/editTextText_SecondStudentName"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@id/spinnerTypeEducation"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/editTextText_SecondStudentName" />
 
     <EditText
         android:id="@+id/editTextText_StudentId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/input_field"
+        android:ems="15"
         android:hint="Номер зачетки..."
-        android:textColor="@color/coloкWhite"
-        app:layout_constraintTop_toBottomOf="@id/editTextText_ThirdStudentName"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@id/spinnerTypeEducation"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/editTextText_ThirdStudentName" />
 
     <Spinner
         android:id="@+id/spinnerTypeEducation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
         android:entries="@array/eduTypes"
-        app:layout_constraintTop_toBottomOf="@id/editTextText_StudentId"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:textColor="@color/coloкWhite"
-        />
+        android:paddingStart="40dp"
+        android:paddingEnd="16dp"
+        android:theme="@style/Spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextText_StudentId" />
 
     <Button
         android:id="@+id/button_ready"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:text="Готово"
-        android:textColor="@color/coloкWhite"
+        android:layout_marginTop="16dp"
+        android:onClick="onButtonReadyClicked"
+        android:text="проверить успеваемость"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@drawable/button_ready"
+
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerTypeEducation"
-        android:onClick="onButtonReadyClicked"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintTop_toBottomOf="@id/spinnerTypeEducation" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/faster_one"
         android:text="powered by Ilya Gushchin"
+        android:textSize="16sp"
+        android:textColor="@color/coloкWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/textViewAnimHello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Politex Mark"
+        android:textSize="45sp"
+        android:textColor="@color/coloкWhite"
+        android:fontFamily="@font/faster_one"
+        app:layout_constraintBottom_toTopOf="@+id/editTextText_FirstStudentName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_expand_more_24"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="13dp"
+        app:layout_constraintTop_toBottomOf="@id/editTextText_StudentId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/spinnerTypeEducation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

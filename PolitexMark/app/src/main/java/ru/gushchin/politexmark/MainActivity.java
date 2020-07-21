@@ -3,6 +3,7 @@ package ru.gushchin.politexmark;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -36,7 +37,7 @@ import java.util.Objects;
 
 import maes.tech.intentanim.CustomIntent;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private NotificationManager notificationManager;
     private static final int NOTIFY_ID = 1;
@@ -87,8 +88,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onButtonReadyClicked(View view) {
-        if (editText_StudentId.getText()== null || editText_FirstStudentName == null || editText_SecondStudentName == null
-                || editText_ThirdStudentName == null) {
+        if (editText_StudentId.getText().toString().equals("")
+                || editText_FirstStudentName.getText().toString().equals("")
+                || editText_SecondStudentName.getText().toString().equals("")
+                || editText_ThirdStudentName.getText().toString().equals("")) {
             Toast.makeText(this, "Данные должны быть во всех полях!", Toast.LENGTH_SHORT).show();
         } else {
             try {

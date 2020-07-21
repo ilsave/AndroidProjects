@@ -9,6 +9,7 @@
     tools:context=".MarkActivity">
 
 
+
     <TextView
         android:id="@+id/textView_mark_facultet"
         android:layout_width="wrap_content"

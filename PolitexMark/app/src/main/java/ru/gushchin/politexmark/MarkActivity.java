@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -26,12 +29,14 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import maes.tech.intentanim.CustomIntent;
 
@@ -55,12 +60,16 @@ public class MarkActivity extends AppCompatActivity {
     String info7;
     String info8;
 
+    Toolbar toolbar;
+
     private TextView textViewFacultetTitle;
     private TextView textViewKyrsTitle;
     private TextView textViewGroupTitle;
     private TextView textViewInfoMark;
     private TextView textViewAverMark;
     private ProgressBar progressBar;
+
+    public static final String TAG = "MarkActivity";
 
     private NotificationManager notificationManager;
     private static final int NOTIFY_ID = 1;
@@ -70,6 +79,12 @@ public class MarkActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mark);
+
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(
+                MyPeriodWork.class, 17, TimeUnit.MINUTES
+        ).build();
+
+        WorkManager.getInstance().enqueue(periodicWorkRequest);
 
         progressBar = findViewById(R.id.progressBar);
 
