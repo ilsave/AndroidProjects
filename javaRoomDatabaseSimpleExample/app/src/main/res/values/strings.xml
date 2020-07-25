@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">javaRoomDatabaseSimpleExample</string>
+    <string name="insert_new_person">Вставить нового пользователя</string>
+    <string name="get_all_pesons">Получить всех пользователей</string>
+    <string name="delete_peson">Удалить пользователя</string>
+    <string name="update_person">Обновить</string>
+    <string name="add_multi_users">Вставить несколько пользователей</string>
+    <string name="find_by_query">Поиск по значению</string>
+    <string name="getAll_by_LiveData">Получить всех с LiveData</string>
+</resources>

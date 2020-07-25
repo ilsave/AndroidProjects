@@ -81,7 +81,7 @@ public class MarkActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mark);
 
         PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(
-                MyPeriodWork.class, 17, TimeUnit.MINUTES
+                MyPeriodWork.class, 1, TimeUnit.DAYS
         ).build();
 
         WorkManager.getInstance().enqueue(periodicWorkRequest);
