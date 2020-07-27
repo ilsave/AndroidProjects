@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.Constraints;
+import androidx.work.NetworkType;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
@@ -33,7 +35,9 @@ import android.widget.Toolbar;
 
 import org.jsoup.select.Elements;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -80,11 +84,22 @@ public class MarkActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mark);
 
+
+
+
+        Constraints constraints = new Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.UNMETERED)
+                .setRequiresCharging(true)
+                .build();
+
         PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(
                 MyPeriodWork.class, 1, TimeUnit.DAYS
-        ).build();
+        )
+                .setConstraints(constraints)
+                .build();
 
         WorkManager.getInstance().enqueue(periodicWorkRequest);
+
 
         progressBar = findViewById(R.id.progressBar);
 
@@ -120,7 +135,10 @@ public class MarkActivity extends AppCompatActivity {
         textViewAverMark.setText(info8);
 
 
+        Calendar calendar = Calendar.getInstance();
 
+
+        String currentDate = DateFormat.getDateInstance(DateFormat.MONTH_FIELD).format(calendar.getTime());
 
 
         notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
@@ -136,10 +154,10 @@ public class MarkActivity extends AppCompatActivity {
                         .setContentIntent(pendingIntent)
                         .setContentTitle("Update, your average mark is  ")
                         .setLargeIcon( BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_menu_favorites))
-                        .setContentText(info4);
+                        .setContentText(String.valueOf(calendar.get(Calendar.MONTH)+1));
         createChannelIfNeeded(notificationManager);
         notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
-        new PolitechQueryTask(this).execute();
+        new PolitechQueryTask().execute();
 
     }
 
@@ -165,7 +183,7 @@ public class MarkActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.item_1:
                 Toast.makeText(this, "item_1", Toast.LENGTH_SHORT).show();
-                new PolitechQueryTask(this).execute();
+                new PolitechQueryTask().execute();
                 return true;
             case R.id.item_2:
                 Toast.makeText(this, "item_2", Toast.LENGTH_SHORT).show();
@@ -191,11 +209,11 @@ public class MarkActivity extends AppCompatActivity {
 
     class PolitechQueryTask extends AsyncTask<Void, Void, Elements> {
 
-        Context context;
 
-        public PolitechQueryTask(Context context) {
-            this.context = context;
-        }
+
+//        public PolitechQueryTask(Context context) {
+//            this.context = getApplicationContext();
+//        }
 
         @Override
         protected Elements doInBackground(Void... params) {
@@ -217,16 +235,16 @@ public class MarkActivity extends AppCompatActivity {
         protected void onPostExecute(Elements response) {
             super.onPostExecute(response);
             if (response!=null) {
-                List<Subject> subjectList = ParseInfo.getSubjectList(response,info6,context);
+                List<Subject> subjectList = ParseInfo.getSubjectList(response,info6,getApplicationContext());
                 subjectAdapter = new SubjectAdapter(subjectList);
                 recyclerView = findViewById(R.id.recyclerView);
                 recyclerView.setAdapter(subjectAdapter);
-                LinearLayoutManager mlinearLayoutManager = new LinearLayoutManager(context);
+                LinearLayoutManager mlinearLayoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(mlinearLayoutManager);
                 subjectAdapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.INVISIBLE);
             } else {
-                Toast.makeText(context, "Данные введены неверно", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Ошибка", Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
             }
         }

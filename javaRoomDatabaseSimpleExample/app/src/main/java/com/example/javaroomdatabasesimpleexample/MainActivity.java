@@ -3,6 +3,8 @@ package com.example.javaroomdatabasesimpleexample;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.nfc.Tag;
 import android.os.AsyncTask;
@@ -16,12 +18,24 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    PersonViewModel personViewModel;
+
     private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        personViewModel = ViewModelProviders.of(this).get(PersonViewModel.class);
+
+        personViewModel.getAllPersons().observe(this, new Observer<List<Person>>() {
+            @Override
+            public void onChanged(List<Person> personList) {
+                Log.d(TAG, "onChanged: " + personList.toString());
+                Log.d(TAG, "onChanged: " + personList.size());
+            }
+        });
     }
 
     public void insertSinglePerson(View view) {
