@@ -17,6 +17,62 @@ public class Subject {
         this.mark = mark;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getFirst_knMark() {
+        return first_knMark;
+    }
+
+    public String getFirst_knpass() {
+        return first_knpass;
+    }
+
+    public String getSecond_knMark() {
+        return second_knMark;
+    }
+
+    public String getSecond_knpass() {
+        return second_knpass;
+    }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setFirst_knMark(String first_knMark) {
+        this.first_knMark = first_knMark;
+    }
+
+    public void setFirst_knpass(String first_knpass) {
+        this.first_knpass = first_knpass;
+    }
+
+    public void setSecond_knMark(String second_knMark) {
+        this.second_knMark = second_knMark;
+    }
+
+    public void setSecond_knpass(String second_knpass) {
+        this.second_knpass = second_knpass;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "subject_id")
     private int id;

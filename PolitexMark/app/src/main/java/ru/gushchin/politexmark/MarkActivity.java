@@ -43,6 +43,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import maes.tech.intentanim.CustomIntent;
+import ru.gushchin.politexmark.Database.SubjectRoomDataBase;
+
 
 public class MarkActivity extends AppCompatActivity {
 
@@ -236,6 +238,10 @@ public class MarkActivity extends AppCompatActivity {
             super.onPostExecute(response);
             if (response!=null) {
                 List<Subject> subjectList = ParseInfo.getSubjectList(response,info6,getApplicationContext());
+
+//                SubjectRoomDataBase.getINSTANCE(getApplicationContext())
+//                        .personDao()
+
                 subjectAdapter = new SubjectAdapter(subjectList);
                 recyclerView = findViewById(R.id.recyclerView);
                 recyclerView.setAdapter(subjectAdapter);

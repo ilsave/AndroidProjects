@@ -41,4 +41,5 @@ public interface PersonDao {
 
     @Query("SELECT * FROM person_table")
     LiveData<List<Person>> findAllPersons();
+
 }

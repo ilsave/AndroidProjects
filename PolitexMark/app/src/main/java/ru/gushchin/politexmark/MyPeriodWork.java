@@ -5,18 +5,24 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+import androidx.lifecycle.LiveData;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
+import org.jsoup.select.Elements;
+
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 public class MyPeriodWork extends Worker {
 
@@ -36,7 +42,17 @@ public class MyPeriodWork extends Worker {
         String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
 
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        Elements response;
+        response = NetworkUtils.getWeb(preferences.getString("firstName", "name"),
+                preferences.getString("secondName", "name"),
+                preferences.getString("fatherName", "name"),
+                preferences.getString("eduType", "name"),
+                preferences.getString("studentNumber", "name"));
 
+        List<String> list = ParseInfo.getBaseInfo(response);
+        List<Subject> subjectList = ParseInfo.getSubjectList(response,list.get(1),getApplicationContext());
+        LiveData<List<Subject>> listLiveSubjectData;
 
 
         if (calendar.get(Calendar.MONTH)+1 == 4
