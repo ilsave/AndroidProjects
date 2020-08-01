@@ -54,6 +54,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 
         editText_FirstStudentName = findViewById(R.id.editTextText_FirstStudentName);
@@ -65,26 +67,10 @@ public class MainActivity extends Activity {
         progressBar.setVisibility(View.INVISIBLE);
 
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (!Objects.equals(preferences.getString("firstName", "name"), "name") &&
-                !Objects.equals(preferences.getString("averMark", "name"), "name")) {
 
-            Intent intent = new Intent(MainActivity.this, MarkActivity.class);
-            intent.putExtra("firstName", preferences.getString("firstName", "Илья-"));
-            intent.putExtra("secondName", preferences.getString("secondName", "Илья-"));
-            intent.putExtra("fatherName", preferences.getString("fatherName", "Илья-"));
-            intent.putExtra("eduType", preferences.getString("eduType", "Илья-"));
-            intent.putExtra("studentNumber", preferences.getString("studentNumber", "Илья-"));
-            intent.putExtra("facultetName", preferences.getString("facultetName", "Илья-"));
-            intent.putExtra("kyrsNumber", preferences.getString("kyrsNumber", "Илья-"));
-            intent.putExtra("group", preferences.getString("group", "Илья-"));
-            intent.putExtra("averMark", preferences.getString("averMark", "Илья-"));
-            startActivity(intent);
-
-
-        }
 
     }
+
 
 
     public void onButtonReadyClicked(View view) {
@@ -108,6 +94,20 @@ public class MainActivity extends Activity {
 
         }
 
+    }
+
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+//        finish();
+//        System.exit(0);
+
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     public boolean iisConnected() throws InterruptedException, IOException {
@@ -159,7 +159,7 @@ public class MainActivity extends Activity {
                         String markline = ParseInfo.getAllMarks(response);
                         progressBar.setVisibility(View.INVISIBLE);
 
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         preferences.edit().putString("firstName", editText_FirstStudentName.getText().toString()).apply();
                         preferences.edit().putString("secondName", editText_SecondStudentName.getText().toString()).apply();
                         preferences.edit().putString("fatherName", editText_ThirdStudentName.getText().toString()).apply();
@@ -172,7 +172,7 @@ public class MainActivity extends Activity {
 
                         Log.d("final", ParseInfo.getAverageMark(response).substring(0, 4) + "ghjk");
 
-                        Toast.makeText(context, "Данные введены верно" + ParseInfo.getAverageMark(response).substring(0, 4), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Данные введены верно" + ParseInfo.getAverageMark(response).substring(0, 4), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, MarkActivity.class);
                         intent.putExtra("firstName", editText_FirstStudentName.getText().toString());
                         intent.putExtra("secondName", editText_SecondStudentName.getText().toString());
@@ -186,7 +186,7 @@ public class MainActivity extends Activity {
                         startActivity(intent);
                         CustomIntent.customType(context, "left-to-right");
                     } else {
-                        Toast.makeText(context, "Данные введены неверно", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Данные введены неверно", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.INVISIBLE);
                     }
                     //            } else {
@@ -194,7 +194,7 @@ public class MainActivity extends Activity {
                     //                progressBar.setVisibility(View.INVISIBLE);
                     //            }
                 } else {
-                    Toast.makeText(context, "Нет интернета:(", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Нет интернета:(", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             } catch (InterruptedException e) {
@@ -202,6 +202,7 @@ public class MainActivity extends Activity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
 
         }

@@ -4,9 +4,23 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity(tableName = "subject_table")
 public class Subject {
 
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", first_knMark='" + first_knMark + '\'' +
+                ", first_knpass='" + first_knpass + '\'' +
+                ", second_knMark='" + second_knMark + '\'' +
+                ", second_knpass='" + second_knpass + '\'' +
+                ", mark='" + mark + '\'' +
+                "} \n";
+    }
 
     public Subject(String name, String first_knMark, String first_knpass, String second_knMark, String second_knpass, String mark) {
         this.name = name;
@@ -95,4 +109,22 @@ public class Subject {
     @ColumnInfo(name = "mark")
     private String mark;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Subject)) return false;
+        Subject subject = (Subject) o;
+        return
+                this.getName().equals(subject.getName()) &&
+                this.getFirst_knMark().equals(subject.getFirst_knMark()) &&
+                this.getFirst_knpass().equals(subject.getFirst_knpass()) &&
+                this.getSecond_knMark().equals(subject.getSecond_knMark()) &&
+                this.getSecond_knpass().equals(subject.getSecond_knpass()) &&
+                this.getMark().equals(subject.getMark());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getFirst_knMark(), getFirst_knpass(), getSecond_knMark(), getSecond_knpass(), getMark());
+    }
 }

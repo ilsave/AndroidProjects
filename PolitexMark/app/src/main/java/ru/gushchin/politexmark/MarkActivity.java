@@ -3,6 +3,7 @@ package ru.gushchin.politexmark;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.Constraints;
@@ -17,9 +18,11 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -88,21 +91,6 @@ public class MarkActivity extends AppCompatActivity {
 
 
 
-
-        Constraints constraints = new Constraints.Builder()
-                .setRequiredNetworkType(NetworkType.UNMETERED)
-                .setRequiresCharging(true)
-                .build();
-
-        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(
-                MyPeriodWork.class, 1, TimeUnit.DAYS
-        )
-                .setConstraints(constraints)
-                .build();
-
-        WorkManager.getInstance().enqueue(periodicWorkRequest);
-
-
         progressBar = findViewById(R.id.progressBar);
 
         textViewAverMark = findViewById(R.id.textView_mark_averMark);
@@ -160,6 +148,17 @@ public class MarkActivity extends AppCompatActivity {
         createChannelIfNeeded(notificationManager);
         notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
         new PolitechQueryTask().execute();
+
+
+
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(MarkActivity.this, MainActivity.class));
+        finish();
 
     }
 
@@ -234,13 +233,53 @@ public class MarkActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(Elements response) {
+        protected void onPostExecute(final Elements response) {
             super.onPostExecute(response);
             if (response!=null) {
-                List<Subject> subjectList = ParseInfo.getSubjectList(response,info6,getApplicationContext());
+                final List<ru.gushchin.politexmark.Database.Subject> subjectList = ParseInfo.getSubjectList(response,info6,getApplicationContext());
+                SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                boolean firstStart = prefs.getBoolean("firstStart", true);
+                if (firstStart){
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
 
-//                SubjectRoomDataBase.getINSTANCE(getApplicationContext())
-//                        .personDao()
+                            SubjectRoomDataBase.getINSTANCE(getApplicationContext())
+                                    .personDao()
+                                    .deleteAllSubjects();
+
+                            SubjectRoomDataBase.getINSTANCE(getApplicationContext())
+                                .personDao()
+                                .insertMultipleSubjects(subjectList);
+
+//                            Toast.makeText(MarkActivity.this, "Первый запуск", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG,  "ПЕРВЫЙ ЗАПУСК");
+                            Log.d(TAG,  subjectList+"");
+
+
+                            Constraints constraints = new Constraints.Builder()
+                                    .setRequiredNetworkType(NetworkType.UNMETERED)
+                                    //.setRequiresCharging(true)
+                                    .build();
+
+                            PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(
+                                    MyPeriodWork.class, 16, TimeUnit.MINUTES
+                            )
+                                    .setConstraints(constraints)
+                                    .build();
+
+                            WorkManager.getInstance().enqueue(periodicWorkRequest);
+
+                            SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = prefs.edit();
+                            editor.putBoolean("firstStart", false);
+                            editor.apply();
+
+                        }
+                    }).start();
+                    Log.d(TAG, subjectList + "");
+                }
+
 
                 subjectAdapter = new SubjectAdapter(subjectList);
                 recyclerView = findViewById(R.id.recyclerView);
@@ -249,8 +288,29 @@ public class MarkActivity extends AppCompatActivity {
                 recyclerView.setLayoutManager(mlinearLayoutManager);
                 subjectAdapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.INVISIBLE);
+
             } else {
-                Toast.makeText(getApplicationContext(), "Ошибка", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Ошибка подключения. Лист из базы данных", Toast.LENGTH_SHORT).show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final List<ru.gushchin.politexmark.Database.Subject> subjectList = SubjectRoomDataBase.getINSTANCE(getApplicationContext())
+                                .personDao()
+                                .getAllSubject();
+                        runOnUiThread(new Runnable() {
+                                          @Override
+                                          public void run() {
+                                              subjectAdapter = new SubjectAdapter(subjectList);
+                                              recyclerView = findViewById(R.id.recyclerView);
+                                              recyclerView.setAdapter(subjectAdapter);
+                                              LinearLayoutManager mlinearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                                              recyclerView.setLayoutManager(mlinearLayoutManager);
+                                              subjectAdapter.notifyDataSetChanged();
+                                          }
+                                      });
+                    }
+                }).start();
+
                 progressBar.setVisibility(View.INVISIBLE);
             }
         }

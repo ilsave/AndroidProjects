@@ -16,6 +16,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import ru.gushchin.politexmark.Database.Subject;
+
 public class ParseInfo {
     static  StringBuilder stringBuilder;
     static List<String> getBaseInfo(Elements response){
@@ -68,16 +70,16 @@ public class ParseInfo {
     }
 
 
-    static List<Subject> getSubjectList(Elements response, String kyrsNumber, Context context){
+    static List<ru.gushchin.politexmark.Database.Subject> getSubjectList(Elements response, String kyrsNumber, Context context){
         stringBuilder = new StringBuilder();
-        List<Subject> list = new ArrayList<>();
+        List<ru.gushchin.politexmark.Database.Subject> list = new ArrayList<>();
         int k = response.size()-(response.size()-2-2*Integer.parseInt(kyrsNumber));
         for (int i = 2; i < k; i++){
-            list.add(new Subject(i-1+" семестр ","","","","",""));
+            list.add(new ru.gushchin.politexmark.Database.Subject(i-1+" семестр ","","","","",""));
             stringBuilder.append(i-1+" семестр \n");
             for (int j = 2; j < response.get(i).childrenSize(); j++) {
                 stringBuilder.append(response.get(i).child(j).child(0).ownText()+ "\n");
-                list.add(new Subject(
+                list.add(new ru.gushchin.politexmark.Database.Subject(
                         StringWork.changeName(response.get(i).child(j).child(0).ownText()),
                         StringWork.check(response.get(i).child(j).child(1).ownText()),
                         StringWork.check(response.get(i).child(j).child(2).ownText()),

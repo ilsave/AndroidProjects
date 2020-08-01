@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder> {
-    private List<Subject> subjectList;
+import ru.gushchin.politexmark.Database.Subject;
 
-    public SubjectAdapter(List<Subject> list) {
+public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder> {
+    private List<ru.gushchin.politexmark.Database.Subject> subjectList;
+
+    public SubjectAdapter(List<ru.gushchin.politexmark.Database.Subject> list) {
         this.subjectList = list;
     }
 
@@ -58,12 +60,12 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
 
         private void bind(@NonNull Subject subject){
 
-            textViewAdapterNameSubject.setText(subject.name);
-            textViewAdapterFirstKnMark.setText(subject.first_knMark);
-            textViewAdapterFirstKnPass.setText(subject.first_knpass);
-            textViewAdapterSecondKnMark.setText(subject.second_knMark);
-            textViewAdapterSecondKnPass.setText(subject.second_knpass);
-            textViewAdapterFinalMark.setText(subject.mark);
+            textViewAdapterNameSubject.setText(subject.getName());
+            textViewAdapterFirstKnMark.setText(subject.getFirst_knMark());
+            textViewAdapterFirstKnPass.setText(subject.getFirst_knpass());
+            textViewAdapterSecondKnMark.setText(subject.getSecond_knMark());
+            textViewAdapterSecondKnPass.setText(subject.getSecond_knpass());
+            textViewAdapterFinalMark.setText(subject.getMark());
         }
 
     }
