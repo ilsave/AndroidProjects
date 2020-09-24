@@ -1,4 +1,4 @@
-package ru.gushchin.politexmark;
+package ru.gushchin.politexmark.other;
 
 public class Subject {
     String name;

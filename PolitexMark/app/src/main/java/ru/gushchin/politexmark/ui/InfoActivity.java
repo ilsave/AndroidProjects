@@ -1,4 +1,4 @@
-package ru.gushchin.politexmark;
+package ru.gushchin.politexmark.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import maes.tech.intentanim.CustomIntent;
+import ru.gushchin.politexmark.R;
 
 public class InfoActivity extends AppCompatActivity {
 

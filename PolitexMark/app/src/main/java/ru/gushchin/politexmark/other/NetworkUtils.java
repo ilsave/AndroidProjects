@@ -1,4 +1,4 @@
-package ru.gushchin.politexmark;
+package ru.gushchin.politexmark.other;
 
 import android.content.Context;
 import android.net.Uri;
@@ -18,7 +18,7 @@ import java.lang.annotation.Documented;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-class NetworkUtils {
+public class NetworkUtils {
 
     Context context;
 

@@ -1,19 +1,11 @@
-package ru.gushchin.politexmark;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
+package ru.gushchin.politexmark.ui;
 
 import android.app.Activity;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.Presentation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,14 +20,12 @@ import android.widget.Toast;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.List;
-import java.util.Objects;
 
 import maes.tech.intentanim.CustomIntent;
+import ru.gushchin.politexmark.other.NetworkUtils;
+import ru.gushchin.politexmark.other.ParseInfo;
+import ru.gushchin.politexmark.R;
 
 public class MainActivity extends Activity {
 

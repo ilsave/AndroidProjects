@@ -1,6 +1,4 @@
-package ru.gushchin.politexmark;
-
-import androidx.appcompat.app.AppCompatActivity;
+package ru.gushchin.politexmark.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +7,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import java.util.Objects;
+
+import ru.gushchin.politexmark.R;
 
 public class StartActivity extends Activity {
 

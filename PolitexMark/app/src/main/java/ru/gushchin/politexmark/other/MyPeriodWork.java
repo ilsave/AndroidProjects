@@ -1,4 +1,4 @@
-package ru.gushchin.politexmark;
+package ru.gushchin.politexmark.other;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -6,31 +6,24 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import org.jsoup.select.Elements;
 
-import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import ru.gushchin.politexmark.Database.Subject;
 import ru.gushchin.politexmark.Database.SubjectRoomDataBase;
+import ru.gushchin.politexmark.R;
+import ru.gushchin.politexmark.ui.MainActivity;
 
 public class MyPeriodWork extends Worker {
 
@@ -76,8 +69,7 @@ public class MyPeriodWork extends Worker {
                             .setWhen(System.currentTimeMillis())
                             .setContentIntent(pendingIntent)
                             .setContentTitle("Есть изменения")
-                            .setContentText("1"+(subjectListFROMDB.size() == subjectListFROMSITE.size())+
-                                    " 2"+ (subjectListFROMSITE.containsAll(subjectListFROMDB)));
+                            .setContentText("Пора проверить!");
             createChannelIfNeeded(notificationManager);
             notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
 
@@ -88,22 +80,8 @@ public class MyPeriodWork extends Worker {
             SubjectRoomDataBase.getINSTANCE(getApplicationContext())
                     .personDao()
                     .insertMultipleSubjects(subjectListFROMSITE);
-        } else {
-            NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            NotificationCompat.Builder notificationBuilder =
-                    new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                            .setAutoCancel(false)
-                            .setSmallIcon(R.drawable.ic_menu_favorites)
-                            .setWhen(System.currentTimeMillis())
-                            .setContentIntent(pendingIntent)
-                            .setContentTitle("Есть изменения в листе информации:)")
-                            .setContentText("Ничего не нашел ( НО проверил!");
-            createChannelIfNeeded(notificationManager);
-            notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
         }
+
 
 
         Log.d("MyperiodWork", subjectListFROMSITE + "");

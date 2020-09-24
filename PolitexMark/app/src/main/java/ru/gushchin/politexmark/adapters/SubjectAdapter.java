@@ -1,4 +1,4 @@
-package ru.gushchin.politexmark;
+package ru.gushchin.politexmark.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ru.gushchin.politexmark.Database.Subject;
+import ru.gushchin.politexmark.R;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder> {
     private List<ru.gushchin.politexmark.Database.Subject> subjectList;

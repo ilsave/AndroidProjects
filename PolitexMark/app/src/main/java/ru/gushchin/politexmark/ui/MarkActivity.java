@@ -1,9 +1,8 @@
-package ru.gushchin.politexmark;
+package ru.gushchin.politexmark.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.Constraints;
@@ -11,18 +10,14 @@ import androidx.work.NetworkType;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
-import android.app.Activity;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,14 +34,18 @@ import android.widget.Toolbar;
 import org.jsoup.select.Elements;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import maes.tech.intentanim.CustomIntent;
 import ru.gushchin.politexmark.Database.SubjectRoomDataBase;
+import ru.gushchin.politexmark.other.MyPeriodWork;
+import ru.gushchin.politexmark.other.NetworkUtils;
+import ru.gushchin.politexmark.other.ParseInfo;
+import ru.gushchin.politexmark.R;
+import ru.gushchin.politexmark.other.Subject;
+import ru.gushchin.politexmark.adapters.SubjectAdapter;
 
 
 public class MarkActivity extends AppCompatActivity {
@@ -94,18 +93,18 @@ public class MarkActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         textViewAverMark = findViewById(R.id.textView_mark_averMark);
-        textViewAverMark.setTextColor(Color.parseColor("#000000"));
+        textViewAverMark.setTextColor(Color.parseColor("#FFFFFF"));
 
 
         textViewFacultetTitle = findViewById(R.id.textView_mark_facultetInfo);
-        textViewFacultetTitle.setTextColor(Color.parseColor("#000000"));
+        textViewFacultetTitle.setTextColor(Color.parseColor("#FFFFFF"));
 
         textViewKyrsTitle = findViewById(R.id.textView_mark_kyrsInfo);
-        textViewKyrsTitle.setTextColor(Color.parseColor("#000000"));
+        textViewKyrsTitle.setTextColor(Color.parseColor("#FFFFFF"));
 
 
         textViewGroupTitle = findViewById(R.id.textView_mark_groupInfo);
-        textViewGroupTitle.setTextColor(Color.parseColor("#000000"));
+        textViewGroupTitle.setTextColor(Color.parseColor("#FFFFFF"));
 
 
         info0 = getIntent().getStringExtra("firstName");
@@ -133,20 +132,20 @@ public class MarkActivity extends AppCompatActivity {
 
         notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                        .setAutoCancel(false)
-                        .setSmallIcon(R.drawable.ic_menu_favorites)
-                        .setWhen(System.currentTimeMillis())
-                        .setContentIntent(pendingIntent)
-                        .setContentTitle("Update, your average mark is  ")
-                        .setLargeIcon( BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_menu_favorites))
-                        .setContentText(String.valueOf(calendar.get(Calendar.MONTH)+1));
-        createChannelIfNeeded(notificationManager);
-        notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
+//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        NotificationCompat.Builder notificationBuilder =
+//                new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+//                        .setAutoCancel(false)
+//                        .setSmallIcon(R.drawable.ic_menu_favorites)
+//                        .setWhen(System.currentTimeMillis())
+//                        .setContentIntent(pendingIntent)
+//                        .setContentTitle("Update, your average mark is  ")
+//                        .setLargeIcon( BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_menu_favorites))
+//                        .setContentText(String.valueOf(calendar.get(Calendar.MONTH)+1));
+//        createChannelIfNeeded(notificationManager);
+//        notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
         new PolitechQueryTask().execute();
 
 
@@ -187,7 +186,7 @@ public class MarkActivity extends AppCompatActivity {
                 new PolitechQueryTask().execute();
                 return true;
             case R.id.item_2:
-                Toast.makeText(this, "item_2", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "item_2", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MarkActivity.this, InfoActivity.class);
                 startActivity(intent);
                 CustomIntent.customType(this, "left-to-right");
